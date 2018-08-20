@@ -27,7 +27,7 @@ namespace Dashboard
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            Main.Logout();
+            Main.Logout();  //Logout
             Main.SetControlVisibility(Main.GetControl("LoginControl"), true);
         }
     }
