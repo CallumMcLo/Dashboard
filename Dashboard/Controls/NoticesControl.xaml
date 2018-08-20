@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Dashboard.NoticesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dashboard"
+             mc:Ignorable="d" Width="696.5" Height="556.5">
+
+    <Grid Margin="10,0,10,-14">
+        <WebBrowser x:Name="BrowserPanel" Navigated="BrowserPanel_Navigated" HorizontalAlignment="Left" Height="572" VerticalAlignment="Top" Width="676"/>
+    </Grid>
+</UserControl>

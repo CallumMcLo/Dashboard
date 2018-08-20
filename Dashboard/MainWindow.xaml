@@ -1,0 +1,20 @@
+﻿<Window x:Class="Dashboard.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dashboard"
+        mc:Ignorable="d"
+        Title="Dashboard" Height="720" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid HorizontalAlignment="Left" Height="692" Margin="0" VerticalAlignment="Top" Width="1080">
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/Background/background3.png"/>
+        </Grid.Background>
+        
+        <local:LoginControl Visibility="Collapsed" x:Name="_LoginControl"/>
+        <local:NavigationControl Visibility="Visible" x:Name="_NavigationControl" Margin="0,0,11,602"/>
+        <local:UserDetails Visibility="Visible" x:Name="_UserDetailsControl" Margin="10,90,735,428"/>
+        <local:NoticesControl Visibility="Visible" x:Name="_NoticesControl" Margin="363,90,20,54"/>
+        <local:TimetableControl Visibility="Visible" x:Name="_TimetableControl" Margin="10,282,735,30"/>
+    </Grid>
+</Window>
