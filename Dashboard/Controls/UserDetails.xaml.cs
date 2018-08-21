@@ -17,11 +17,9 @@ namespace Dashboard
 {
     public partial class UserDetails : UserControl
     {
-        public static UserDetails userDetails;
         public UserDetails()
         {
             InitializeComponent();
-            userDetails = this;
         }
 
         public void SetDayOfWeek()

@@ -11,11 +11,12 @@ namespace Dashboard
         private static Dictionary<string, UserControl> UserControls = new Dictionary<string, UserControl>();
         public static string BaseDirectory { get; private set; } = AppDomain.CurrentDomain.BaseDirectory;
         public static string NoticesLink = @"https://kamar-portal.burnside.school.nz/index.php/notices";
+        public static string LogoutLink = @"https://kamar-portal.burnside.school.nz/index.php/logout";
 
         public Main()
         {
             InitializeComponent();
-
+            //Inserting all the UserControls into the private dictionary on startup so they can be used.
             UserControls["LoginControl"] = _LoginControl;
             UserControls["NavigationControl"] = _NavigationControl;
             UserControls["UserDetailsControl"] = _UserDetailsControl;
@@ -43,12 +44,12 @@ namespace Dashboard
         public static UserControl GetControl(string key) //Get control from UserControls dictionary.
         {
             if (UserControls.ContainsKey(key))
-                return UserControls[key];
+                return UserControls[key]; //Extract Control from private Dictionary, keeps encapsulation
             else
                 throw new Exception("Specified key was not found in dictionary. UserControl not adding or key invalid");
         }
 
-        public static void ShowLoggedInWindows(User user)
+        public static void ShowLoggedInWindows(User user) //These windows are the windows to show when logged in
         {
             SetControlVisibility(GetControl("NavigationControl"), true);
             SetControlVisibility(GetControl("UserDetailsControl"), true);
@@ -56,12 +57,12 @@ namespace Dashboard
             SetControlVisibility(GetControl("TimetableControl"), true);
 
 #if !DEBUG
-            NoticesControl.noticesControl.LoggedIn();
-            UserDetails.userDetails.Login(user);
+            ((NoticesControl)GetControl("NoticesControl")).LoggedIn();
+            ((UserDetails)GetControl("UserDetailsControl")).Login(user);
 #endif
         }
 
-        public static void Logout()
+        public static void Logout() //Logout function, everything that needs to be done when logging out will be in here.
         {
             HideAll();
         }

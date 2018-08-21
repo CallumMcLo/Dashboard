@@ -8,12 +8,9 @@ namespace Dashboard
 {
     public partial class NoticesControl : UserControl
     {
-        public static NoticesControl noticesControl;
-
         public NoticesControl()
         {
             InitializeComponent();
-            noticesControl = this;
             //BrowserPanel.Visibility = Visibility.Collapsed;
         }
 

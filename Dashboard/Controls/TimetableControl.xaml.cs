@@ -20,14 +20,12 @@ namespace Dashboard
     /// </summary>
     public partial class TimetableControl : UserControl
     {
-        public static TimetableControl timetableControl;
         public TimetableControl()
         {
             InitializeComponent();
-            timetableControl = this;
         }
 
-        private void KamarLogin(User user)
+        private void Loginn(User user)
         {
 
         }
@@ -35,6 +33,11 @@ namespace Dashboard
         public void ShowTimetable(User user)
         {
 
+        }
+
+        public void Logout()
+        {
+            BrowserControl.Navigate(Main.LogoutLink);
         }
     }
 }

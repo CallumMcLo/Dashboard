@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Dashboard"
              mc:Ignorable="d" Width="335" Height="174.196">
     <Grid Background="#BFE6E5E5">
-        <Image Margin="3,0,142,19" Grid.Row="0">
+        <Image Margin="0,10,145,10" Grid.Row="0">
             <Image.Source>
                 <BitmapImage UriSource="../Resources/Icons/defaultprofile.png"/>
             </Image.Source>

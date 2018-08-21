@@ -30,23 +30,45 @@ namespace Dashboard
         private void Button_Click(object sender, RoutedEventArgs e) //Do login validation here
         {
 #if !DEBUG
-            if (!int.TryParse(UserIDEntry.Text, out int userID) || UserIDEntry.Text.Length != 5)
+            if (!isValid(UserIDEntry.Text, PasswordEntry.Password))
             {
-                MessageBox.Show("Invalid UserID / Password");
+                MessageBox.Show("Invalid Username or Password");
+                ClearPassword();
                 return;
             }
 
-            if (PasswordEntry.Password.Length != 8)
-            {
-                MessageBox.Show("Invalid UserID / Password");
+            if (!(int.TryParse(UserIDEntry.Text, out int userID)))
                 return;
-            }
+
             User user = new User(userID, PasswordEntry.Password);
             Main.ShowLoggedInWindows(user);
 #else
             Main.ShowLoggedInWindows(null);
 #endif
+            ClearInput();
             Main.SetControlVisibility(this, false);
+        }
+
+        private bool isValid(string username, string password)
+        {
+            if (!int.TryParse(UserIDEntry.Text, out int userID) || UserIDEntry.Text.Length != 5) //UserID cannot be 
+                return false;
+
+            if (PasswordEntry.Password.Length != 8)
+                return false;
+
+            return true;
+        }
+
+        public void ClearInput()
+        {
+            UserIDEntry.Text = "";
+            ClearPassword();
+        }
+
+        private void ClearPassword()
+        {
+            PasswordEntry.Password = "";
         }
     }
 }
