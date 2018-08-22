@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Dashboard"
-             mc:Ignorable="d" Height="720" Width="1080">
-    <Grid>
+             mc:Ignorable="d" Height="720" Width="1080" Loaded="UserControl_Loaded">
+    <Grid KeyDown="Grid_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="300"/>
             <RowDefinition Height="auto"/>
@@ -21,7 +21,7 @@
             <Label Content="Sign In To Service" HorizontalAlignment="Center" Padding="0" Width="205" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="15" Height="20" Background="#FFA6A6A6"/>
             <Label Content="UserID" HorizontalAlignment="Center" Width="96" Padding="0" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="16" Height="23" Background="#FFA6A6A6" Margin="0,0,109,0"/>
             <Label Content="Password" HorizontalAlignment="Center" Width="96" Padding="0" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="16" Height="21" Background="#FFA6A6A6" Margin="0,0,109,0"/>
-            <Button Content="Sign In" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Height="29" Click="Button_Click"/>
+            <Button Content="Sign In" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Height="29" Click="SignIn_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Margin="539,36,431,207">
             <TextBox x:Name="UserIDEntry" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" MaxLength="8" MaxLines="1" BorderBrush="#FFABADB3"/>

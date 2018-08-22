@@ -97,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ExtensionMethods.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Controls\NoticesControl.xaml.cs">
       <DependentUpon>NoticesControl.xaml</DependentUpon>
@@ -178,9 +182,7 @@
     <Resource Include="Resources\Icons\cog.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Background\background3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Resources\Background\background3.png" />
     <Resource Include="Resources\Icons\defaultprofile.png" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +196,17 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSHTML">
+      <Guid>{3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

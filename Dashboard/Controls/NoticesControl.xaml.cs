@@ -1,20 +1,19 @@
-﻿using System.Net;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using HtmlAgilityPack;
-using mshtml;
 
 namespace Dashboard
 {
     public partial class NoticesControl : UserControl
     {
+        private int counter = 0;
+
         public NoticesControl()
         {
             InitializeComponent();
-            //BrowserPanel.Visibility = Visibility.Collapsed;
+            BrowserPanel.Visibility = Visibility.Collapsed;
         }
 
-        public void LoggedIn()
+        public void Login()
         {
             GetNotices();
         }
@@ -26,14 +25,20 @@ namespace Dashboard
 
         private void BrowserPanel_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            //dynamic document = BrowserPanel.Document;
-            //string notices = document.documentElement.InnerHtml;
-            //BrowserPanel.NavigateToString(notices);
-            //HTMLDocument document = BrowserPanel.Document as mshtml.HTMLDocument;
-            //document.getElementById("//div[@class='container']").outerHTML = "";
-            //document.body.innerHTML = document.getElementById("wrapper").outerHTML;
-            //BrowserPanel.Visibility = Visibility.Visible;
-            BrowserPanel.Focus();
+            if (!(e.Uri.ToString() == Main.NoticesLink) && counter <= Main.MAX_NETWORK_ATTEMPTS)
+            {
+                BrowserPanel.Navigate(Main.NoticesLink);
+                counter++;
+            }
+
+            if (counter == Main.MAX_NETWORK_ATTEMPTS)
+            {
+                MessageBox.Show("Error retrieving notices after " + Main.MAX_NETWORK_ATTEMPTS + " attempts.");
+                return;
+            }
+
+            BrowserPanel.Visibility = Visibility.Visible;
+            counter = 0;
         }
     }
 }

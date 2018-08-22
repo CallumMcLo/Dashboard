@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Dashboard"
              mc:Ignorable="d" Width="335" Height="379.5">
-    <Grid>
-        <WebBrowser x:Name="BrowserControl" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="335"/>
+    <Grid Background="#BFE6E5E5">
+        <WebBrowser x:Name="BrowserPanel" Navigated="BrowserPanel_Navigated" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="335" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

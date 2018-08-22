@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Dashboard"
              mc:Ignorable="d" Width="696.5" Height="556.5">
 
-    <Grid Margin="10,0,10,-14">
-        <WebBrowser x:Name="BrowserPanel" Navigated="BrowserPanel_Navigated" HorizontalAlignment="Left" Height="572" VerticalAlignment="Top" Width="676"/>
+    <Grid Margin="10,0,10,-14" Background="#BFE6E5E5" >
+        <WebBrowser x:Name="BrowserPanel" Navigated="BrowserPanel_Navigated" HorizontalAlignment="Left" Height="572" VerticalAlignment="Top" Width="676" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

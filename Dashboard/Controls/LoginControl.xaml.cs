@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Dashboard
 {
@@ -20,17 +9,20 @@ namespace Dashboard
     /// </summary>
     public partial class LoginControl : UserControl
     {
-        Window mainWindow = Application.Current.MainWindow;
-
         public LoginControl()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) //Do login validation here
+        private void UserControl_Loaded(object sender, RoutedEventArgs e) //Event fires when this control is loaded
         {
-#if !DEBUG
-            if (!isValid(UserIDEntry.Text, PasswordEntry.Password))
+            UserIDEntry.Focus(); //Make it so user can type into user ID box immediately and not have to click on it.
+        }
+
+        private void SignIn_Click(object sender, RoutedEventArgs e) //Do login validation here
+        {
+#if !DEBUG //Allows skipping logging in if in DEBUG mode.
+            if (!IsValid(UserIDEntry.Text, PasswordEntry.Password)) //Check if username/password passes requirements
             {
                 MessageBox.Show("Invalid Username or Password");
                 ClearPassword();
@@ -45,16 +37,21 @@ namespace Dashboard
 #else
             Main.ShowLoggedInWindows(null);
 #endif
-            ClearInput();
+            ClearInput(); //Clear entered username/password from window
+
+#if !DEBUG
+            user = null;  //Clear User class from memory
+#endif
+
             Main.SetControlVisibility(this, false);
         }
 
-        private bool isValid(string username, string password)
+        private bool IsValid(string username, string password) 
         {
-            if (!int.TryParse(UserIDEntry.Text, out int userID) || UserIDEntry.Text.Length != 5) //UserID cannot be 
+            if (!int.TryParse(UserIDEntry.Text, out int userID) || UserIDEntry.Text.Length != 5) //UserID cannot be less than or greater than 5 chars
                 return false;
 
-            if (PasswordEntry.Password.Length != 8)
+            if (PasswordEntry.Password.Length != 8)     //User passwords can only be 8 chars
                 return false;
 
             return true;
@@ -69,6 +66,14 @@ namespace Dashboard
         private void ClearPassword()
         {
             PasswordEntry.Password = "";
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e) //Keydown event fires whenever a key is pushed.
+        {
+            if (e.Key == Key.Enter)         //Allow user to hit enter to login
+            {
+                SignIn_Click(this, null);
+            }
         }
     }
 }
