@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -40,7 +41,7 @@ namespace Dashboard
             ClearInput(); //Clear entered username/password from window
 
 #if !DEBUG
-            user = null;  //Clear User class from memory
+            EraseUser(user); //Erase user from memory
 #endif
 
             Main.SetControlVisibility(this, false);
@@ -65,7 +66,7 @@ namespace Dashboard
 
         private void ClearPassword()
         {
-            PasswordEntry.Password = "";
+            PasswordEntry.Password = ""; //Clear from entry box
         }
 
         private void Grid_KeyDown(object sender, KeyEventArgs e) //Keydown event fires whenever a key is pushed.
@@ -74,6 +75,12 @@ namespace Dashboard
             {
                 SignIn_Click(this, null);
             }
+        }
+
+        private void EraseUser(User user)
+        {
+            user.ClearPassword(); //Remove password from memory.
+            user = null;  //Clear User class from memory
         }
     }
 }
