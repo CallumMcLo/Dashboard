@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Windows.Controls;
 
 namespace ExtensionMethods
@@ -19,6 +20,24 @@ namespace ExtensionMethods
                 // ambiguous means there is more than one result,
                 return true;
             }
+        }
+
+        // convert a secure string into a normal plain text string
+        public static String ToPlainString(this System.Security.SecureString secureStr)
+        {
+            String plainStr = new System.Net.NetworkCredential(string.Empty, secureStr).Password;
+            return plainStr;
+        }
+
+        // convert a plain text string into a secure string
+        public static System.Security.SecureString ToSecureString(this String plainStr)
+        {
+            System.Security.SecureString secStr = new System.Security.SecureString(); secStr.Clear();
+            foreach (char c in plainStr.ToCharArray())
+            {
+                secStr.AppendChar(c);
+            }
+            return secStr;
         }
     }
 }

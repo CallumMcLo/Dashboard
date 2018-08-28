@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dashboard"
         mc:Ignorable="d"
-        Title="Dashboard" Height="720" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Dashboard" Height="664" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid HorizontalAlignment="Left" Height="692" Margin="0" VerticalAlignment="Top" Width="1080">
         <Grid.Background>
             <ImageBrush ImageSource="Resources/Background/background3.png"/>
         </Grid.Background>
-        
+
         <local:LoginControl Visibility="Collapsed" x:Name="_LoginControl"/>
-        <local:NavigationControl Visibility="Visible" x:Name="_NavigationControl" Margin="0,0,11,602"/>
-        <local:UserDetails Visibility="Visible" x:Name="_UserDetailsControl" Margin="10,90,735,428"/>
-        <local:NoticesControl Visibility="Visible" x:Name="_NoticesControl" Margin="363,90,20,54"/>
-        <local:TimetableControl Visibility="Visible" x:Name="_TimetableControl" Margin="10,282,735,30"/>
+        <local:NavigationControl Visibility="Visible" x:Name="_NavigationControl" Margin="20,0,-9,660"/>
+        <local:UserDetails Visibility="Visible" x:Name="_UserDetailsControl" Margin="10,44,735,474"/>
+        <local:NoticesControl Visibility="Visible" x:Name="_NoticesControl" Margin="363,44,20,91"/>
+        <local:TimetableControl Visibility="Visible" x:Name="_TimetableControl" Margin="10,236,735,76"/>
     </Grid>
 </Window>

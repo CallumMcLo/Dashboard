@@ -4,24 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Dashboard"
-             mc:Ignorable="d" Height="90" Width="1069">
-    <Grid Margin="0,0,0,16">
+             mc:Ignorable="d" Height="32" Width="1069">
+    <Grid Margin="0,0,0,62">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="142"/>
-            <ColumnDefinition Width="141"/>
-            <ColumnDefinition Width="141"/>
-            <ColumnDefinition Width="348"/>
-            <ColumnDefinition Width="632"/>
+            <ColumnDefinition Width="718*"/>
+            <ColumnDefinition Width="209*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="64" Margin="-1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="1281" Fill="#CCFFFFFF"/>
-        <Button x:Name="HomeButton"  Content="Home" HorizontalAlignment="Left" Height="47" Margin="10,10,0,0" VerticalAlignment="Top" Width="121" FontSize="24" Background="Green" Foreground="White" FontWeight="Bold"/>
-        <Button x:Name="NCEAButton" Content="NCEA" Grid.Column="1" HorizontalAlignment="Left" Height="47" Margin="10,10,0,0" VerticalAlignment="Top" Width="121" FontSize="24" Background="Green" Foreground="White" FontWeight="Bold"/>
-        <Button x:Name="KamarButton" Content="KAMAR" Grid.Column="2" HorizontalAlignment="Left" Height="47" Margin="9,10,0,0" VerticalAlignment="Top" Width="121" FontSize="24" RenderTransformOrigin="-0.579,0.745" Background="Green" Foreground="White" FontWeight="Bold"/>
-        <Button x:Name="SettingsButton" Grid.Column="4" HorizontalAlignment="Left" Height="47" Margin="109,10,0,0" VerticalAlignment="Top" Width="46" FontSize="24" BorderBrush="Black">
+        <Rectangle Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="34" Margin="-121,0,-6,-34" Stroke="Black" VerticalAlignment="Top" Width="1196" Fill="#CCFFFFFF"/>
+        <Button x:Name="SettingsButton" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="34,3,0,-29" VerticalAlignment="Top" Width="26" FontSize="24" BorderBrush="Black" RenderTransformOrigin="-1.105,0.611">
             <Button.Background>
                 <ImageBrush ImageSource="/Dashboard;component/Resources/Icons/cog.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="LogoutButton" Content="Logout" Grid.Column="4" HorizontalAlignment="Left" Height="47" Margin="160,10,0,0" VerticalAlignment="Top" Width="121" FontSize="24" Click="LogoutButton_Click" Background="Green" Foreground="White" FontWeight="Bold"/>
+        <Button x:Name="LogoutButton" Content="Logout" Height="26" Margin="65,3,0,-29" VerticalAlignment="Top" Width="121" Click="LogoutButton_Click" Background="Green" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2"/>
     </Grid>
 </UserControl>

@@ -1,38 +1,25 @@
-﻿namespace Dashboard
+﻿using System.Security;
+
+namespace Dashboard
 {
-    public unsafe class User
+    public class User
     {
         public int UserID { get; private set; }
-        private unsafe char* Password { get; set; }
-
-        public unsafe User(int userid, string password)
+        private SecureString Password { get; set; }
+        public User(int userid, SecureString password)
         {
             UserID = userid;
-            Password = ConvertToPointer(password.ToCharArray());
-            password = null;
+            Password = password;
         }
 
-        public unsafe string GetPassword()
+        public SecureString GetPassword()
         {
-            return new string(Password);
+            return Password;
         }
 
-        private unsafe char* ConvertToPointer(char[] s)
+        public int GetUsername()
         {
-            fixed (char* p = s) //Convert to Char*
-                return p;
-        }
-
-        public unsafe void ClearPassword()
-        {
-            for (int i = 0; Password[i] != '\0'; ++i)
-            {
-                Password[i] = '\0'; //Overwrite location in memory with \0 which is an explicit NUL terminator
-            }
-        }
-
-        unsafe ~User() //Called when garbage collected
-        {
+            return UserID;
         }
     }
 }

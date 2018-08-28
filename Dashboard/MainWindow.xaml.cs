@@ -16,8 +16,6 @@ namespace Dashboard
         public static string LogoutLink = @"https://kamar-portal.burnside.school.nz/index.php/logout";
         public static string TimetableLink = @"https://kamar-portal.burnside.school.nz/index.php/attendance";
 
-        public const int MAX_NETWORK_ATTEMPTS = 3;
-
         private static List<UserControl> LoginControls = new List<UserControl>();
         private static List<UserControl> LogoutControls = new List<UserControl>();
 
@@ -67,7 +65,7 @@ namespace Dashboard
                 SetControlVisibility(control, true);
 
 #if !DEBUG  //Allows login to the program without a username/password for debug purposes.
-            ((NoticesControl)GetControl("NoticesControl")).Login();
+            ((NoticesControl)GetControl("NoticesControl")).Login(user);
             ((UserDetails)GetControl("UserDetailsControl")).Login(user);
             ((TimetableControl)GetControl("TimetableControl")).Login(user);
 #endif
@@ -75,6 +73,7 @@ namespace Dashboard
 
         public static void Logout() //Logout function, everything that needs to be done when logging out will be in here.
         {
+            ((NoticesControl)GetControl("NoticesControl")).Logout();
             ((UserDetails)GetControl("UserDetailsControl")).Logout();
             ((TimetableControl)GetControl("TimetableControl")).Logout();
 
@@ -87,7 +86,7 @@ namespace Dashboard
             List<UserControl> _controlsList = new List<UserControl>();
             foreach (UserControl control in controlsToCheck)
             {
-                if (control.HasMethod(function))
+                if (control.HasMethod(function)) //Check if control has a function name.
                 {
                     _controlsList.Add(control);
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExtensionMethods;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -33,7 +34,7 @@ namespace Dashboard
             if (!(int.TryParse(UserIDEntry.Text, out int userID)))
                 return;
 
-            User user = new User(userID, PasswordEntry.Password);
+            User user = new User(userID, PasswordEntry.Password.ToSecureString());
             Main.ShowLoggedInWindows(user);
 #else
             Main.ShowLoggedInWindows(null);
@@ -79,8 +80,7 @@ namespace Dashboard
 
         private void EraseUser(User user)
         {
-            user.ClearPassword(); //Remove password from memory.
-            user = null;  //Clear User class from memory
+            user = null;  //Allow Garbage Collector to overwrite user in memory
         }
     }
 }

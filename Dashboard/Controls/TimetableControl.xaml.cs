@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using ExtensionMethods;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -22,7 +23,7 @@ namespace Dashboard
             var loginData = new System.Collections.Specialized.NameValueCollection      //Post request information
             {
                 { "username", user.UserID.ToString() },
-                { "password", user.GetPassword() }
+                { "password", user.GetPassword().ToPlainString() }
             };
 
             client.UploadValues("index.php/login", "POST", loginData);              //Login to website
