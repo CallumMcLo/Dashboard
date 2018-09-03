@@ -7,9 +7,10 @@ using System.Windows.Controls;
 
 namespace Dashboard
 {
-    //This is the main class that will connect all the other classes together
+    //Any ErrorState variable can only be one of these options, this tells the program what type of ErrorState it is.
     public enum ErrorState { OK, InvalidDetails, Unknown };
 
+    //This is the main class that will connect all the other classes together
     public partial class Main : Window
     {
         private static Dictionary<string, UserControl> UserControls = new Dictionary<string, UserControl>();

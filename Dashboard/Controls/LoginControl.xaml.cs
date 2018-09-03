@@ -27,13 +27,14 @@ namespace Dashboard
             {
                 ClearPassword();
                 ShowLoginError();
+                return;
             }
 
             if (!(int.TryParse(UserIDEntry.Text, out int userID)))
                 return;
 
-            User user = new User(userID, PasswordEntry.Password.ToSecureString());
-            Main.ShowLoggedInWindows(user);
+            User user = new User(userID, PasswordEntry.Password.ToSecureString()); //Make new User object
+            Main.ShowLoggedInWindows(user); //Login with user object
 #else
             Main.ShowLoggedInWindows(null);
 #endif

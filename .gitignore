@@ -3,3 +3,8 @@
 ################################################################################
 
 /Dashboard/bin/Debug
+/.vs/Dashboard/v15
+/Dashboard/.vs/Dashboard/v15/Server/sqlite3
+/Dashboard/obj
+/Dashboard/Dashboard.csproj.user
+/Dashboard.sln
