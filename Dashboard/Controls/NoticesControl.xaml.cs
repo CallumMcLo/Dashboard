@@ -1,5 +1,4 @@
-﻿using ExtensionMethods;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Dashboard
@@ -9,32 +8,13 @@ namespace Dashboard
         public NoticesControl()
         {
             InitializeComponent();
-            BrowserPanel.Visibility = Visibility.Collapsed;
+            BrowserPanel.Visibility = Visibility.Collapsed; //Hide window until ready to be shown
+            BrowserPanel.Navigate(Main.NoticesLink); //Navigate to notices
         }
 
-        public void Login(User user)
+        public void Login() //Needed so .HasMethod returns true for this class having a login function
         {
-            var client = new CookieAwareWebClient(); //WebClient allowing cookies to be stored in it.
-            client.BaseAddress = Main.BaseLink;
-
-            var loginData = new System.Collections.Specialized.NameValueCollection      //Post request information
-            {
-                { "username", user.UserID.ToString() },
-                { "password", user.GetPassword().ToPlainString() }
-            };
-
-            client.UploadValues("index.php/login", "POST", loginData);              //Login to website
-
-            string htmlSource = client.DownloadString("index.php/notices");
-            ShowNotices(htmlSource); //Display HTML from Kamar
-
-            client.Dispose();
-            loginData = null; //Purge WebClient and LoginData as to allow them to be overwritten in memory, minimizing allowance for them to be read.
-        }
-
-        private void ShowNotices(string html)
-        {
-            BrowserPanel.NavigateToString(html);        //Load HTML into browser from string.
+            BrowserPanel.Navigate(Main.NoticesLink); //Navigate to notices
         }
 
         public void Logout()
@@ -44,7 +24,7 @@ namespace Dashboard
 
         private void BrowserPanel_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            BrowserPanel.Visibility = Visibility.Visible;
+            BrowserPanel.Visibility = Visibility.Visible; //Show panel when loaded.
         }
     }
 }

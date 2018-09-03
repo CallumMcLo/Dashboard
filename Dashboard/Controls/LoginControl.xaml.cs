@@ -1,5 +1,4 @@
 ﻿using ExtensionMethods;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -26,9 +25,8 @@ namespace Dashboard
 #if !DEBUG //Allows skipping logging in if in DEBUG mode.
             if (!IsValid(UserIDEntry.Text, PasswordEntry.Password)) //Check if username/password passes requirements
             {
-                MessageBox.Show("Invalid Username or Password");
                 ClearPassword();
-                return;
+                ShowLoginError();
             }
 
             if (!(int.TryParse(UserIDEntry.Text, out int userID)))
@@ -44,8 +42,6 @@ namespace Dashboard
 #if !DEBUG
             EraseUser(user); //Erase user from memory
 #endif
-
-            Main.SetControlVisibility(this, false);
         }
 
         private bool IsValid(string username, string password) 
@@ -57,6 +53,11 @@ namespace Dashboard
                 return false;
 
             return true;
+        }
+
+        public void ShowLoginError()
+        {
+            MessageBox.Show("Invalid Username or Password");
         }
 
         public void ClearInput()

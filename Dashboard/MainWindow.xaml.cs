@@ -7,6 +7,9 @@ using System.Windows.Controls;
 
 namespace Dashboard
 {
+    //This is the main class that will connect all the other classes together
+    public enum ErrorState { OK, InvalidDetails, Unknown };
+
     public partial class Main : Window
     {
         private static Dictionary<string, UserControl> UserControls = new Dictionary<string, UserControl>();
@@ -61,17 +64,19 @@ namespace Dashboard
 
         public static void ShowLoggedInWindows(User user) //These windows are the windows to show when logged in
         {
-            foreach (UserControl control in LoginControls)
+            SetControlVisibility(GetControl("LoginControl"), false); //User is logged in, don't need to show them the login window anymore
+
+            foreach (UserControl control in LoginControls) //Set every control with a Login() method to visible
                 SetControlVisibility(control, true);
 
 #if !DEBUG  //Allows login to the program without a username/password for debug purposes.
-            ((NoticesControl)GetControl("NoticesControl")).Login(user);
+            ((NoticesControl)GetControl("NoticesControl")).Login();
             ((UserDetails)GetControl("UserDetailsControl")).Login(user);
             ((TimetableControl)GetControl("TimetableControl")).Login(user);
 #endif
         }
 
-        public static void Logout() //Logout function, everything that needs to be done when logging out will be in here.
+        public static void Logout(ErrorState errorState = ErrorState.OK) //Logout function, everything that needs to be done when logging out will be in here, errorstate defaults to OK if no params passed
         {
             ((NoticesControl)GetControl("NoticesControl")).Logout();
             ((UserDetails)GetControl("UserDetailsControl")).Logout();
@@ -79,6 +84,11 @@ namespace Dashboard
 
             HideAll();
             SetControlVisibility(GetControl("LoginControl"), true);
+
+            if (errorState == ErrorState.InvalidDetails) //If logout reason is due to invalid details
+                ((LoginControl)GetControl("LoginControl")).ShowLoginError();
+            if (errorState == ErrorState.Unknown) //If logout is due to unknown error
+                MessageBox.Show("Unknown Error occured, please try again.");
         }
 
         private List<UserControl> GetSpecificControls(List<UserControl> controlsToCheck, string function)
@@ -86,9 +96,9 @@ namespace Dashboard
             List<UserControl> _controlsList = new List<UserControl>();
             foreach (UserControl control in controlsToCheck)
             {
-                if (control.HasMethod(function)) //Check if control has a function name.
+                if (control.HasMethod(function)) //Check if control has a function name, eg Logout(), Login()
                 {
-                    _controlsList.Add(control);
+                    _controlsList.Add(control); //Add it to the temporary list to be returned.
                 }
             }
             return _controlsList;

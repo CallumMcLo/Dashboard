@@ -20,7 +20,7 @@ namespace Dashboard
             var client = new CookieAwareWebClient(); //WebClient allowing cookies to be stored in it.
             client.BaseAddress = Main.BaseLink;
 
-            var loginData = new System.Collections.Specialized.NameValueCollection      //Post request information
+            var loginData = new System.Collections.Specialized.NameValueCollection      //Post request information, needed to login to website
             {
                 { "username", user.UserID.ToString() },
                 { "password", user.GetPassword().ToPlainString() }
@@ -29,9 +29,14 @@ namespace Dashboard
             client.UploadValues("index.php/login", "POST", loginData);              //Login to website
 
             string htmlSource = client.DownloadString("index.php/attendance");
+            if (htmlSource.Contains("Denied")) //We can't login to KAMAR, therefore username/password must be wrong
+            {
+                Main.Logout(ErrorState.InvalidDetails); //Logout with invalid details error state
+                return;
+            }
 
             client.Dispose();
-            loginData = null; //Purge WebClient and LoginData as to not store them in memory, allowing them to be read.
+            loginData = null; //Purge WebClient and LoginData allowing Garbage Collector to get them out of memory.
 
             ShowTimetable(htmlSource);              //Display HTML from Kamar
         }
